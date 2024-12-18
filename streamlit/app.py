@@ -1,5 +1,6 @@
 import streamlit as st
-from items.description import project_description
+from items.description import description
+from items.exploration import exploration
 
 st.html(
     """
@@ -87,11 +88,11 @@ menu = st.sidebar.radio("Menu", ["Poject Description",
 
 
 if menu == "Poject Description":
-    #project_description()
-    pass
+    description()
+    
 elif menu == "Data Exploration":
-    #data_exploration()
-    pass
+    exploration()
+
 elif menu == "ResNet50":
     #ResNet50()
     pass
