@@ -1,3 +1,6 @@
+![Cover Image](streamlit/images/cover_image_sample.png)
+
+
 # Machine Learning Models for Brain Tumor Diagnosis
 The objective of this project is to utilize cutting edge machine 
 learning technology to train models to detect brain tumors based 
