@@ -6,17 +6,6 @@ def description():
     with Image.open('images/cover_image_sample.png') as img:
         st.image(img)
 
-    st.markdown(
-    """
-    <style>
-    .scaling-headers {
-        font-size: 1.75vw;
-        #text-align: center;
-    }
-    </style>
-    """,
-    unsafe_allow_html = True)
-
     st.markdown("""<p class = 'scaling-headers'><u>Machine
                 Learning Models for Brain Tumor Detection
                 </u></p>""",
@@ -26,7 +15,7 @@ def description():
         The objective of this project is to utilize cutting edge machine 
         learning technology to train models to detect brain tumors based 
         on MRI images. In this project, I make use of three different models,
-        ResNet50, DenseNet, and a custom made model to assess their ability
+        ResNet50, DenseNet169, and a custom made model to assess their ability
         to detect brain tumors in MRI images.
         """)
 
@@ -36,7 +25,7 @@ def description():
     st.markdown("""Dataset retrieved from kaggle:<br>
         <a href = "https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection/data">
         Brain MRI Images for Brain Tumor Detection</a><br>
-        This dataset contrains MRI images of brains with and without tumors.
+        This dataset contains MRI images of brains with and without tumors.
         The objective of this project is to build a neural network that can
         detect the presence of a brain tumor based on an MRI scans. To achieve
         this objective, I trained three different models to evaluate

@@ -1,6 +1,9 @@
 import streamlit as st
 from items.description import description
 from items.exploration import exploration
+from items.ResNet50 import resnet50
+from items.DenseNet162 import densenet162
+from items.custom import custom_model
 
 st.html(
     """
@@ -71,6 +74,12 @@ div.main > div {
     margin: 0 auto;  /* Center the content */
 }
 
+
+.scaling-headers {
+    font-size: 1.75vw;
+    #text-align: center;
+}
+
 </style>
 """
 )
@@ -78,8 +87,8 @@ div.main > div {
 
 st.sidebar.image("images/logo.png", use_container_width = False)
 
-menu = st.sidebar.radio("Menu", ["Poject Description",
-                                 "Data Exploration",
+menu = st.sidebar.radio("Menu", ["Project Description",
+                                 "Data Exploration & Preparation",
                                  "ResNet50",
                                  "DenseNet162",
                                  "Custom Model",
@@ -87,22 +96,34 @@ menu = st.sidebar.radio("Menu", ["Poject Description",
                         label_visibility = "collapsed")
 
 
-if menu == "Poject Description":
+if menu == "Project Description":
     description()
     
-elif menu == "Data Exploration":
+elif menu == "Data Exploration & Preparation":
     exploration()
 
 elif menu == "ResNet50":
-    #ResNet50()
-    pass
+    resnet50()
+
 elif menu == "DenseNet162":
-    #DenseNet162()
-    pass
+    densenet162()
+
 elif menu == "Custom Model":
-    #custom_model()
-    pass
+    custom_model()
+
 elif menu == "Outlook":
     #outlook()
     pass
+
+col1, col2 = st.sidebar.columns([0.15, 0.85], gap = "small",
+                                vertical_alignment = "center")
+col1.image("images/github.png")
+col2.markdown("""<a href = "philjhowson.github.io">philjhowson.github.io</a>""",
+              unsafe_allow_html = True)
+
+col1, col2 = st.sidebar.columns([0.15, 0.85], gap = "small",
+                                vertical_alignment = "center")
+col1.image("images/linkedin.png")
+col2.markdown("""<a href = "https://www.linkedin.com/in/philjhowson/">philjhowson</a>""",
+              unsafe_allow_html = True)
 
