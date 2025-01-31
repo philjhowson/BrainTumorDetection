@@ -82,7 +82,7 @@ with torch.no_grad():
         test_labels.extend(test_labels_batch.cpu().numpy())
         test_preds.extend(test_predicted.cpu().numpy())
 
-test_roc_score = roc_auc_score(test_labels, test_preds)
+test_roc_score = roc_auc_score(test_labels, test_preds, average = 'weighted')
 test_f1_score = f1_score(test_labels, test_preds)
 report = classification_report(test_labels, test_preds, target_names = ['No Tumor', 'Tumor'])
 

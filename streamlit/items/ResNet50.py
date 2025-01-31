@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
+import pickle
 
 def resnet50():
 
@@ -10,6 +11,12 @@ def resnet50():
 
     st.markdown("""<p class = 'scaling-headers'><u>ResNet50</u></p>""",
                 unsafe_allow_html = True)
+
+    with open('metrics/resnet_50_scores.pkl', 'rb') as f:
+        scores = pickle.load(f)
+
+    with open('metrics/resnet50_tumor_performance_v1.pkl', 'rb') as f:
+        history = pickle.load(f)
 
     st.markdown("""I used a ResNet50
                 (<a href = "https://arxiv.org/abs/1512.03385">He et al.,
@@ -37,26 +44,26 @@ def resnet50():
                 set, and the gradient for the training set.""",
                 unsafe_allow_html = True)
 
-    with Image.open("images/resnet_history.png") as img:
+    with Image.open("images/resnet_history_v1.png") as img:
         st.image(img, caption = """Training and Validation measurements.
                  Training data is in blue and validation data is in purple.
                  """, use_container_width = True)
 
-    st.markdown("""The training process demonstrated a relatively high degree
+    st.markdown(f"""The training process demonstrated a relatively high degree
                 of instability, which was observed in the oscillating training
                 ROC-AUC and F1-Scores. This may be due to the larger batch
-                size (64) relative to the size of the training data. However,
+                size (32) relative to the size of the training data. However,
                 the validation set showed more stability, with more consistent
-                increases and less fluctuation. The model triggered early
+                increases, but still a great deal of fluctuation. The model triggered early
                 stoppage, where the model was loaded from the best ROC-AUC
-                score (0.9391) and was saved in that state. The model scored
-                lower on the test set than on the validation set, with a
-                ROC-AUC score of 0.868. The full classification report is
-                printed below.""")
+                score ({round(max(history['val_roc_auc']), 2)}) and was saved in
+                that state. The model scored lower on the test set than on the
+                validation set, with a ROC-AUC score of {round(scores['ROC-AUC'], 2)}.
+                The full classification report is printed below.""")
 
-    resnet_report = {'Precision' : [0.80, 0.92, '', 0.86, 0.87],
-                     'Recall' : [0.88, 0.86, '', 0.87, 0.87],
-                     'F1-Score' : [0.83, 0.89, 0.87, 0.86, 0.87],
+    resnet_report = {'Precision' : [0.68, 0.97, '', 0.82, 0.86],
+                     'Recall' : [0.96, 0.72, '', 0.84, 0.81],
+                     'F1-Score' : [0.80, 0.82, 0.81, 0.82, 0.81],
                      'Support' : [49, 78, 127, 127, 127]
                     }
     resnet_report = pd.DataFrame(resnet_report,
@@ -77,7 +84,7 @@ def resnet50():
                 skull suggesting that no learned features for tumor recognition
                 were found in the brain matter.""", unsafe_allow_html = True)
 
-    with Image.open("images/resnet_gradcam.png") as img:
+    with Image.open("images/custom_resnet50_grad_cam_v1.png") as img:
         st.image(img, caption = """GradCAM images for twenty randomly selected
         images. The first two rows are 'No Tumor' and the last two rows
         are 'Tumor' images. Predicted label, with probability in brackets, and

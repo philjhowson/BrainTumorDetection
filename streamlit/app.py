@@ -4,6 +4,7 @@ from items.exploration import exploration
 from items.ResNet50 import resnet50
 from items.DenseNet162 import densenet162
 from items.custom import custom_model
+from items.comparison import comparison
 
 st.html(
     """
@@ -92,7 +93,7 @@ menu = st.sidebar.radio("Menu", ["Project Description",
                                  "ResNet50",
                                  "DenseNet162",
                                  "Custom Model",
-                                 "Outlook"],
+                                 "Model Comparison"],
                         label_visibility = "collapsed")
 
 
@@ -111,14 +112,14 @@ elif menu == "DenseNet162":
 elif menu == "Custom Model":
     custom_model()
 
-elif menu == "Outlook":
-    #outlook()
+elif menu == "Model Comparison":
+    comparison()
     pass
 
 col1, col2 = st.sidebar.columns([0.15, 0.85], gap = "small",
                                 vertical_alignment = "center")
 col1.image("images/github.png")
-col2.markdown("""<a href = "philjhowson.github.io">philjhowson.github.io</a>""",
+col2.markdown("""<a href = "https://philjhowson.github.io">philjhowson.github.io</a>""",
               unsafe_allow_html = True)
 
 col1, col2 = st.sidebar.columns([0.15, 0.85], gap = "small",
