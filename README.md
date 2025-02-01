@@ -1,44 +1,111 @@
-![Cover Image](streamlit/images/cover_image_sample.png)
-
-
-# Machine Learning Models for Brain Tumor Diagnosis
-The objective of this project is to utilize cutting edge machine 
-learning technology to train models to detect brain tumors based 
-on MRI images. In this project, I make use of three different models,
-ResNet50, DenseNet169, and a custom made model to assess their ability
-to detect brain tumors in MRI images.
-
-## The Dataset
-Dataset retrieved from kaggle:
-
-[Brain MRI Images for Brain Tumor Detection](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection/data)
-
-This dataset contains MRI images of brains with and without tumors.
-The objective of this project is to build a neural network that can
-detect the presence of a brain tumor based on an MRI scans. To achieve
-this objective, I trained three different models to evaluate
-performance.
-
-## The Models
-
-1. ResNet50 ([He et al., 2015](https://arxiv.org/abs/1512.03385))
-
-Resnet50 utilizes residual learning through "skip connections" to
-facilitate deeper neural networks without loss of accuracy which
-occurred in earlier models.
-
-2. DenseNet ([Huang et al., 2018](https://arxiv.org/abs/1608.06993))
-
-DenseNet169 differs from other models in that feature maps from all
-previous layers of the model are shared with each layer. This
-interconnectedness facilitates deeper neural networks with less
-computational load than other models.
-
-3. Custom Model
-
-I built a custom model that utilizes different kernel sizes to
-leverage their ability to capture local and global relationships
-before concatenating the feature maps for pass through deeper
-convolutional layers. Each block in the network shares the output
-feature map of the previous blocks to facilitate a deeper
-neural network much like ResNet50 and DenseNet.
+C:.
+|   .gitignore
+|   README.md
+|   tree.txt
+|   
++---data
+|       test_indices.pkl
+|       train_indices.pkl
+|       val_indices.pkl
+|       
++---images
+|       custom_models_grad_cam_v1.png
+|       custom_model_history_v1.png
+|       custom_resnet50_grad_cam_v1.png
+|       data_exploration.png
+|       densenet_gradcam_v1.png
+|       densenet_history_v1.png
+|       model_comparison.png
+|       resizing.png
+|       resnet_history_v1.png
+|       
++---metrics
+|       custom_model_classification_report.pkl
+|       custom_model_scores.pkl
+|       custom_model_tumor_performance_v1.pkl
+|       densenet_classification_report.pkl
+|       densenet_scores.pkl
+|       densenet_tumor_performance_v1.pkl
+|       resnet50_tumor_performance_v1.pkl
+|       resnet_50_classification_report.pkl
+|       resnet_50_scores.pkl
+|       
++---models
+|       custom_model_tumor_checkpoint_v1.pth
+|       densenet_tumor_checkpoint_20.pth
+|       densenet_tumor_checkpoint_v1.pth
+|       resnet50_tumor_checkpoint_v1.pth
+|       resnet50_tumor_checkpoint_v2.pth
+|       resnet50_tumor_checkpoint_v3.pth
+|       
++---scans
+|   +---no
+|   |       
+|   \---yes
+|           
++---src
+|   |   compare_models.py
+|   |   custom_functions.py
+|   |   data_exploration.py
+|   |   evaluate_custom_model.py
+|   |   evaluate_custom_resnet50.py
+|   |   evaluate_densenet.py
+|   |   split_data.py
+|   |   train_custom_model.py
+|   |   train_custom_resnet50.py
+|   |   train_densenet.py
+|   |   
+|   +---.ipynb_checkpoints
+|   |       data_exploration-checkpoint.ipynb
+|   |       
+|   \---__pycache__
+|           custom_functions.cpython-311.pyc
+|           
+\---streamlit
+    |   app.py
+    |   requirements.txt
+    |   
+    +---images
+    |       cover_image_sample.png
+    |       custom_models_grad_cam_v1.png
+    |       custom_model_history_v1.png
+    |       custom_resnet50_grad_cam_v1.png
+    |       data_exploration.png
+    |       densenet.png
+    |       densenet_gradcam_v1.png
+    |       densenet_history_v1.png
+    |       github.png
+    |       linkedin.png
+    |       logo.png
+    |       model_comparison.png
+    |       random_brain_image_sample.png
+    |       resizing.png
+    |       resnet50.jpg
+    |       resnet_history_v1.png
+    |       
+    +---items
+    |   |   comparison.py
+    |   |   custom.py
+    |   |   DenseNet162.py
+    |   |   description.py
+    |   |   exploration.py
+    |   |   ResNet50.py
+    |   |   
+    |   \---__pycache__
+    |           comparison.cpython-311.pyc
+    |           custom.cpython-311.pyc
+    |           DenseNet162.cpython-311.pyc
+    |           description.cpython-311.pyc
+    |           exploration.cpython-311.pyc
+    |           ResNet50.cpython-311.pyc
+    |           
+    \---metrics
+            custom_model_classification_report.pkl
+            custom_model_scores.pkl
+            custom_model_tumor_performance_v1.pkl
+            densenet_classification_report.pkl
+            densenet_scores.pkl
+            densenet_tumor_performance_v1.pkl
+            resnet50_tumor_performance_v1.pkl
+            resnet_50_classification_report.pkl
+            resnet_50_scores.pkl
