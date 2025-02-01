@@ -1,13 +1,15 @@
 # Machine Learning Models for Brain Tumor Detection
 ***
-This project demonstrates MLOps best practices using a machine learning 
-model that predicts if an NBA player will make a specific shot or not. The emphasis
-is less on the machine learning model, and more on the automated data pipeline to train
-the model, the deployment of the model, and the monitoring of the model.
+This project utilizes three different machine learning models to test their efficiency
+at diagnosing the patients with brain tumors. The dataset used for training was retrieved
+from Kaggle. Visit the link below for more information and to download the image files
+used in model training:
+
+[Brain MRI Images for Brain Tumor Detection](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection/data)
 
 ## Project Organization
 ------------------------------------------------------------------------
-    Root
+    root
     ├── data # contains indices for training, validation, and testing
     │   ├── test_indices.pkl
     │   ├── train_indices.pkl
@@ -54,4 +56,63 @@ the model, the deployment of the model, and the monitoring of the model.
     │   ├── app.py
     │   └── requirements.txt
     ├── .gitignore
+    ├── main.py
     └── README.md
+
+## Project Introduction
+I began by exploring the dataset to determine the distribution of classes and the different
+image properties. Then I visualized the distribution and characteristics of the dataset.
+The training, validation, and test split were then created and saved for model training 
+and evaluation.
+
+Three models were build and tested using the [pytorch](https://pytorch.org/) library. I
+utilized a ResNet50 model with additional layers and skip connections, DenseNet 162, and
+a custom built model.
+
+The ResNet50 model had three additional convolutional layers with skip connections that 
+I trained on model specific tasks, while the majority of the ResNet50 model weights were
+frozen to facilitate transfer learning. A small snippet of code below presents the 
+general structure of the additional layers. There are a total of 91,838,657 parameters, 
+of which 61,517,569 were trainable.
+
+```python
+    def forward(self, x):
+
+        x = self.base_model(x)
+
+        skip_connection = self.skip_connection1(x)
+        x = self.Conv1(x)
+        x = x + skip_connection
+```
+
+The DenseNet 162 model was unchanged, although I froze the majority of the layers. Resulting
+in 972,160 trainable parameters, out of a total 12,486,145.
+
+The custom built model had a multi-branch architecture. Specifically, the input image was
+sent through a block with a large kernel (kernel_size = 7) and a block with a medium kernel
+(kernel = 5) size before being concatenated and fed through the remaining blocks.
+The initial residual learning, was added to the second block and then residual
+learning was continually accumulated in an intermediate object such that each block
+had access to a feature map that contained the output of ever previous block. For
+more details about the custom model architecture and the architecture of the additions
+made to the ResNet50 model, please see the custom_functions.py file in the src folder.
+
+```python
+    def forward(self, x):
+
+        large = self.large(x)
+        medium = self.medium(x)
+        x = torch.cat([large, medium], axis = 1)
+        
+        x = self.block1(x)
+
+        residual = self.residual1(x)
+        x = self.block2(x)
+        x = x + residual
+
+        intermediate = self.intermediate1(residual)
+        residual = self.residual2(x)
+        intermediate = torch.cat([intermediate, residual], axis = 1)
+        x = self.block3(x)
+        x = x + intermediate
+```
