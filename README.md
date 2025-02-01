@@ -31,11 +31,11 @@ the model, the deployment of the model, and the monitoring of the model.
     │   ├── densenet_tumor_performance_v1.pkl
     │   ├── resnet50_tumor_performance_v1.pkl
     │   ├── resnet_50_classification_report.pkl
-    │   ├── resnet_50_scores.pkl
+    │   └── resnet_50_scores.pkl
     ├── models # output folder for model saves, this is not on github due to model sizes
     ├── scans # folder containing MRI scans, not on repository, download from Kaggle
-    │   ├── no
-    │   ├── yes
+    │   ├── no # contains images without a tumor 
+    │   └── yes # contains images with a tumor 
     ├── src # contains source code for exploration, and model training and evaluation
     │   ├── compare_models.py
     │   ├── custom_functions.py
@@ -43,8 +43,15 @@ the model, the deployment of the model, and the monitoring of the model.
     │   ├── evaluate_custom_model.py 
     │   ├── evaluate_custom_resnet50.py 
     │   ├── evaluate_densenet.py 
-    │   ├──
-    │   ├──
-    │   ├──
-    │   ├──
-    ├── 
+    │   ├── split_data.py 
+    │   ├── train_custom_model.py 
+    │   ├── train_custom_resnet50.py 
+    │   └── train_densenet.py 
+    ├── streamlit # contains the files for the streamlit app
+    │   ├── images # contains images used in the streamlit app
+    │   ├── items # contains src files for the streamlit app 
+    │   ├── metrics # contains metrics used in the streamlit app
+    │   ├── app.py
+    │   └── requirements.txt
+    ├── .gitignore
+    └── README.md
