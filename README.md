@@ -85,7 +85,7 @@ of which 61,517,569 were trainable.
         x = x + skip_connection
 ```
 
-The DenseNet 162 model was unchanged, although I froze the majority of the layers. Resulting
+The DenseNet 162 model was unchanged, although I froze the majority of the layers, resulting
 in 972,160 trainable parameters, out of a total 12,486,145.
 
 The custom built model had a multi-branch architecture. Specifically, the input image was
