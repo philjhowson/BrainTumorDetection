@@ -90,7 +90,7 @@ in 972,160 trainable parameters, out of a total 12,486,145.
 
 The custom built model had a multi-branch architecture. Specifically, the input image was
 sent through a block with a large kernel (kernel_size = 7) and a block with a medium kernel
-(kernel = 5) size before being concatenated and fed through the remaining blocks.
+(kernel_size = 5) size before being concatenated and fed through the remaining blocks.
 The initial residual learning, was added to the second block and then residual
 learning was continually accumulated in an intermediate object such that each block
 had access to a feature map that contained the output of ever previous block. For
