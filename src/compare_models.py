@@ -13,6 +13,8 @@ def compare_models(models = ['resnet', 'densenet', 'custom'], versions = [1, 1, 
         index = models.index('custom')
         models[index] = 'custom_model'
 
+    version_str = "_".join(map(str, versions))
+
     model_scores = {}
 
     for index, model in enumerate(models):
@@ -61,7 +63,7 @@ def compare_models(models = ['resnet', 'densenet', 'custom'], versions = [1, 1, 
 
     plt.legend();
 
-    plt.savefig(f'images/model_comparison_{versions}.png', bbox_inches = 'tight')
+    plt.savefig(f'images/model_comparison_{version_str}.png', bbox_inches = 'tight')
 
     print('Model comparison plot saved.')
     print('Script complete!')

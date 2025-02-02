@@ -13,7 +13,7 @@ def comparison():
                 is presented below.
                 """, unsafe_allow_html = True)
 
-    with Image.open("images/model_comparison_[2, 2, 2].png") as img:
+    with Image.open("images/model_comparison_2_2_2.png") as img:
         st.image(img, caption = """ROC-AUC and F1 Scores for each of the
                  models. The ROC-AUC score is in blue and the F1-Score
                  is in purple.

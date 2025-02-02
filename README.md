@@ -15,19 +15,19 @@ used in model training:
     │   ├── train_indices.pkl
     │   └── val_indices.pkl
     ├── images # contains output images from data exploration and model evaluation
-    │   ├── custom_model_grad_cam_v1.png
-    │   ├── custom_model_history_v1.png
+    │   ├── custom_model_grad_cam_v2.png
+    │   ├── custom_model_history_v2.png
     │   ├── data_exploration.png
     │   ├── densenet_gradcam_v2.png
     │   ├── densenet_history_v2.png
-    │   ├── model_comparison.png
+    │   ├── model_comparison_2_2_2.png
     │   ├── resizing.png
     │   ├── resnet50_grad_cam_v2.png
     │   └── resnet50_history_v2.png
     ├── metrics # output metrics for model training and evaluation
-    │   ├── custom_model_classification_report_v1.pkl
-    │   ├── custom_model_scores_v1.pkl
-    │   ├── custom_model_tumor_performance_v1.pkl
+    │   ├── custom_model_classification_report_v2.pkl
+    │   ├── custom_model_scores_v2.pkl
+    │   ├── custom_model_tumor_performance_v2.pkl
     │   ├── densenet_classification_report_v2.pkl
     │   ├── densenet_scores_v2.pkl
     │   ├── densenet_tumor_performance_v2.pkl
@@ -58,7 +58,8 @@ used in model training:
     ├── .gitignore
     ├── LICENSE
     ├── main.py
-    └── README.md
+    ├── README.md
+    └── requirements.txt
 
 ## Project Introduction
 I began by exploring the dataset to determine the distribution of classes and the different
