@@ -33,7 +33,7 @@ prompt_toolkit==3.0.47
 ipywidgets==8.1.5
 pyparsing==2.4.7
 matplotlib==3.9.2
-pandas==2.2.3
+pandas==1.5.3
 Pillow==10.4.0
 scipy==1.14.0
 torchvision==0.20.0
