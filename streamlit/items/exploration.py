@@ -51,10 +51,11 @@ def exploration():
         or another similar function.""")
 
     st.markdown("""DataLoader() was used to process batches for the training
-                and validation stages. I used the transforms.Compose()
-                to create randomized changes in the images to reduce
-                overfitting and help model generalization. They included
-                vertical and horizontal flips, a random affine, gaussian
+                and validation stages. Batch sizes were set to 32 for ResNet50
+                and DenseNet162, but to 16 for the custom model due to GPU limitations.
+                I used the transforms.Compose() to create randomized changes
+                in the images to reduce overfitting and help model generalization.
+                They included vertical and horizontal flips, a random affine, gaussian
                 blur, and random erasing. Additionally, the images were
                 converted to grayscale, resized with my custom function,
                 and normalized with a mean of 0.5, and std of 0.5. The

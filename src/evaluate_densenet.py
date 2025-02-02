@@ -203,7 +203,7 @@ def evaluate_densenet(version = 1):
 
     plt.tight_layout();
 
-    plt.savefig(f'images/densenet_gradcam_v{version}.png', bbox_inches = 'tight')
+    plt.savefig(f'images/densenet_grad_cam_v{version}.png', bbox_inches = 'tight')
 
     print('grad_cam images saved.')
     print('Script complete!')

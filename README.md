@@ -119,3 +119,60 @@ made to the ResNet50 model, please see the custom_functions.py file in the src f
 ```
 
 ## Getting Started
+
+Clone the repository:
+
+```sh
+git clone https://github.com/philjhowson/BrainTumorDetection
+```
+
+Navigate to the cloned repository and create a folders for the models and scans:
+
+```sh
+mkdir models scans
+```
+Download the scans from [kaggle](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection/data)
+ and unpack the yes and no folders from the zip into the scans folder.
+
+ The scripts assume the root directory of the repository is the directory you are running
+ the code from.
+
+ Everything can be run from the main.py file, which has one mandatory argument, when
+ being run --script, which should be one of explore, preparation, train, or compare.
+ However, for all options besides explore and prepare, at least one model needs
+ to be specified, using the --model argument. This argument takes either resnet, densenet,
+ or custom as arguments. You can also optionally include a version argument --version,
+ which expects and int, such as 1, or 2. This can be useful if you want to run the
+ model training more than once but to save all the outputs individual. The default
+ version is 1.
+
+ ```sh
+ python main.py --script explore
+ ```
+```sh
+python main.py --script train --model densenet --version 2
+```
+
+The model comparison script also has two arguments, --models and --versions, which takes
+a minimum of one argument, but can take more. The default arguments for --models
+resnet, densenet, custom and the default for --versions is 1, 1, 1,.
+
+```sh
+python main.py --script compare --models densenet custom --versions 1 2
+```
+
+The training script will run both the training and evaluation scripts, but each
+script can be run alone, but the script still expects it to be run from the root
+directory. In these cases, the training and evaluation scripts only take the --version
+argument, and default to 1 if not specified.
+
+```sh
+python src/evaluate_densenet.py --version 2
+```
+
+However, the model comparison script still takes the --models and --versions arguments
+as with the main.py script.
+
+```sh
+python src/compare_models.py --models resnet custom --versions 2 1
+```

@@ -12,10 +12,10 @@ def resnet50():
     st.markdown("""<p class = 'scaling-headers'><u>ResNet50</u></p>""",
                 unsafe_allow_html = True)
 
-    with open('metrics/resnet_50_scores.pkl', 'rb') as f:
+    with open('metrics/resnet50_scores_v2.pkl', 'rb') as f:
         scores = pickle.load(f)
 
-    with open('metrics/resnet50_tumor_performance_v1.pkl', 'rb') as f:
+    with open('metrics/resnet50_tumor_performance_v2.pkl', 'rb') as f:
         history = pickle.load(f)
 
     st.markdown("""I used a ResNet50
@@ -44,7 +44,7 @@ def resnet50():
                 set, and the gradient for the training set.""",
                 unsafe_allow_html = True)
 
-    with Image.open("images/resnet_history_v1.png") as img:
+    with Image.open("images/resnet50_history_v2.png") as img:
         st.image(img, caption = """Training and Validation measurements.
                  Training data is in blue and validation data is in purple.
                  """, use_container_width = True)
@@ -52,25 +52,27 @@ def resnet50():
     st.markdown(f"""The training process demonstrated a relatively high degree
                 of instability, which was observed in the oscillating training
                 ROC-AUC and F1-Scores. This may be due to the larger batch
-                size (32) relative to the size of the training data. However,
-                the validation set showed more stability, with more consistent
-                increases, but still a great deal of fluctuation. The model triggered early
-                stoppage, where the model was loaded from the best ROC-AUC
-                score ({round(max(history['val_roc_auc']), 2)}) and was saved in
-                that state. The model scored lower on the test set than on the
-                validation set, with a ROC-AUC score of {round(scores['ROC-AUC'], 2)}.
-                The full classification report is printed below.""")
+                size (32) relative to the size of the training data. The validation
+                set showed the same instability, but with more increases in scores.
+                The model triggered early stoppage, where the model was loaded
+                from the best ROC-AUC score ({round(max(history['val_roc_auc']), 2)})
+                and was saved in that state. The model scored lower on the
+                test set than on the validation set, with a ROC-AUC score of
+                {round(scores['ROC-AUC'], 2)}. The full classification report is
+                printed below.""")
 
-    resnet_report = {'Precision' : [0.68, 0.97, '', 0.82, 0.86],
-                     'Recall' : [0.96, 0.72, '', 0.84, 0.81],
-                     'F1-Score' : [0.80, 0.82, 0.81, 0.82, 0.81],
-                     'Support' : [49, 78, 127, 127, 127]
-                    }
-    resnet_report = pd.DataFrame(resnet_report,
-                                 index = ['No Tumor', 'Tumor','Accuracy',
-                                          'Macro Average', 'Weighted Average'])
+    with open(f"metrics/resnet50_classification_report_v2.pkl", 'rb') as f:
+              resnet_report = pickle.load(f)
 
-    resnet_report = resnet_report.style.format(precision = 2, na_rep = "")
+    accuracy = resnet_report.pop('accuracy')
+    resnet_report = pd.DataFrame(resnet_report).transpose()
+    accuracy_row = pd.DataFrame({'precision': '', 'recall': '', 'f1-score': accuracy, 'support': 127}, index=['accuracy'])
+    resnet_report = pd.concat([resnet_report.iloc[:2, :], accuracy_row, resnet_report.iloc[2:, :]])
+    resnet_report['support'] = resnet_report['support'].astype(int)
+    resnet_report.rename(columns = {'precision' : 'Precision', 'recall' : 'Recall',
+                                    'f1-score' : 'F1-Score', 'support' : 'Support'}, inplace = True)
+    resnet_report = resnet_report.style.format(precision = 3, na_rep = "")
+
     st.table(resnet_report)
 
     st.markdown("""To further explore the how the model classifies scans as
@@ -84,7 +86,7 @@ def resnet50():
                 skull suggesting that no learned features for tumor recognition
                 were found in the brain matter.""", unsafe_allow_html = True)
 
-    with Image.open("images/custom_resnet50_grad_cam_v1.png") as img:
+    with Image.open("images/resnet50_grad_cam_v2.png") as img:
         st.image(img, caption = """GradCAM images for twenty randomly selected
         images. The first two rows are 'No Tumor' and the last two rows
         are 'Tumor' images. Predicted label, with probability in brackets, and

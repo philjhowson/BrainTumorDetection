@@ -6,15 +6,15 @@ import pickle
 def densenet162():
 
     with Image.open("images/densenet.png") as img:
-        st.image(img)
+        st.image(img, caption = "Image credit to Huang et al., 2018")
 
     st.markdown("""<p class = 'scaling-headers'><u>DenseNet169</u></p>""",
                 unsafe_allow_html = True)
 
-    with open('metrics/densenet_scores.pkl', 'rb') as f:
+    with open('metrics/densenet_scores_v2.pkl', 'rb') as f:
         scores = pickle.load(f)
 
-    with open('metrics/densenet_tumor_performance_v1.pkl', 'rb') as f:
+    with open('metrics/densenet_tumor_performance_v2.pkl', 'rb') as f:
         history = pickle.load(f)
     
     st.markdown("""I used DenseNet169 
@@ -32,32 +32,35 @@ def densenet162():
                 validation set, and the gradient for the training set""",
                 unsafe_allow_html = True)
     
-    with Image.open("images/densenet_history_v1.png") as img:
+    with Image.open("images/densenet_history_v2.png") as img:
         st.image(img, caption = """Training and Validation measurements.
                  Training data is in blue and validation data is in purple.
                  """, use_container_width = True)
         
     st.markdown(f"""The training and validation metrics indicated a relatively stable
                 increase in metrics over the training epochs, although there was
-                still choppy increases and decreases in the performance metrics. However,
-                the validation set showed more stability, with more consistent
-                increases and less fluctuation. The model was training was stopped
-                early and the model was loaded from the best ROC-AUC score 
+                still choppy increases and decreases in the performance metrics.
+                Additionally, the best score was approached fairly early, with only
+                small increases in scores and decreases in loss over the remaining
+                epochs. The model was training was stopped early and the model
+                was loaded from the best ROC-AUC score 
                 ({round(max(history['val_roc_auc']), 2)}). The model scored
                 lower on the test set than on the validation set, with a
                 ROC-AUC score of {round(scores['ROC-AUC'], 2)}. The full
                 classification report is printed below.""")
 
-    densenet_report = {'Precision' : [0.82, 0.96, '', 0.89, 0.91],
-                     'Recall' : [0.93, 0.87, '', 0.91, 0.90],
-                     'F1-Score' : [0.87, 0.91, 0.90, 0.89, 0.90],
-                     'Support' : [49, 78, 127, 127, 127]
-                    }
-    densenet_report = pd.DataFrame(densenet_report,
-                                 index = ['No Tumor', 'Tumor','Accuracy',
-                                          'Macro Average', 'Weighted Average'])
+    with open(f"metrics/densenet_classification_report_v2.pkl", 'rb') as f:
+              densenet_report = pickle.load(f)
 
-    densenet_report = densenet_report.style.format(precision = 2, na_rep = "")
+    accuracy = densenet_report.pop('accuracy')
+    densenet_report = pd.DataFrame(densenet_report).transpose()
+    accuracy_row = pd.DataFrame({'precision': '', 'recall': '', 'f1-score': accuracy, 'support': 127}, index=['accuracy'])
+    densenet_report = pd.concat([densenet_report.iloc[:2, :], accuracy_row, densenet_report.iloc[2:, :]])
+    densenet_report['support'] = densenet_report['support'].astype(int)
+    densenet_report.rename(columns = {'precision' : 'Precision', 'recall' : 'Recall',
+                                    'f1-score' : 'F1-Score', 'support' : 'Support'}, inplace = True)
+    densenet_report = densenet_report.style.format(precision = 3, na_rep = "")
+
     st.table(densenet_report)
 
     st.markdown("""To further explore the how the model classifies scans as
@@ -76,7 +79,7 @@ def densenet162():
                 activation in the 'Tumor' cases seem to confirm this.""",
                 unsafe_allow_html = True)
 
-    with Image.open("images/densenet_gradcam_v1.png") as img:
+    with Image.open("images/densenet_grad_cam_v2.png") as img:
         st.image(img, caption = """GradCAM images for twenty randomly selected
         images. The first two rows are 'No Tumor' and the last two rows
         are 'Tumor' images. Predicted label, with probability in brackets, and

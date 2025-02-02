@@ -31,13 +31,13 @@ def description():
                 unsafe_allow_html = True)
 
     st.markdown("""
-        <b>ResNet 50</b> (<a href = "https://arxiv.org/abs/1512.03385">He et al., 2015</a>)<br>
+        <b>ResNet50</b> (<a href = "https://arxiv.org/abs/1512.03385">He et al., 2015</a>)<br>
         Resnet50 utilizes residual learning through "skip connections" to facilitate deeper neural
         networks without loss of accuracy which occurred in earlier models.
         """, unsafe_allow_html = True)
 
     st.markdown("""
-        <b>DenseNet 162</b> (<a href = "https://arxiv.org/abs/1608.06993">Huang et al., 2018</a>)<br>
+        <b>DenseNet162</b> (<a href = "https://arxiv.org/abs/1608.06993">Huang et al., 2018</a>)<br>
         DenseNet169 differs from other models in that feature maps from all previous layers of the
         model are shared with each layer. This interconnectedness facilitates deeper neural networks
         with less computational load than other models.
@@ -48,7 +48,7 @@ def description():
         I built a custom model that utilizes different kernel sizes to leverage their ability to
         capture local and global relationships before concatenating the feature maps for pass through
         deeper convolutional layers. Each block in the network shares the output feature map of the
-        previous blocks to facilitate a deeper neural network much like ResNet 50 and DenseNet 162.
+        previous blocks to facilitate a deeper neural network much like ResNet50 and DenseNet162.
         """, unsafe_allow_html = True)
     
     st.markdown("""For access to the files and code associated with this project, please
