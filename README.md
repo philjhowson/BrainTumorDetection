@@ -154,7 +154,7 @@ Download the scans from [kaggle](https://www.kaggle.com/datasets/navoneel/brain-
 python main.py --script train --model densenet --version 2
 ```
 
-The model comparison script also has two arguments, --models and --versions, which takes
+The model comparison script also has two arguments, --models and --versions, which take
 a minimum of one argument, but can take more. The default arguments for --models
 resnet, densenet, custom and the default for --versions is 1, 1, 1,.
 
