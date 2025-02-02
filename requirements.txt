@@ -50,3 +50,4 @@ executing==2.0.1
 numpy==1.24.3
 pickleshare==0.7.5
 streamlit==1.40.2
+setuptools==70.1.0
