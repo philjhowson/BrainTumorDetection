@@ -158,7 +158,7 @@ a minimum of one argument, but can take more. The default arguments for --models
 resnet, densenet, custom and the default for --versions is 1, 1, 1,.
 
 ```sh
-python main.py --script compare --models densenet custom --versions 1 2
+python main.py --script compare --models resnet densenet custom --versions 3 1 2
 ```
 
 The training script will run both the training and evaluation scripts, but each
@@ -176,3 +176,12 @@ as with the main.py script.
 ```sh
 python src/compare_models.py --models resnet custom --versions 2 1
 ```
+
+## Future Directions
+
+Machine learning models have a tremendous potential to assist diagnosis of a wide
+range of illnesses. I plan to utilize more medical images from a wider range of
+techniques in order to train further models to detect cancer and other illnesses.
+I am also planning to use other openly available medical information to train
+models on datasets such as blood work and other numerical based evaluations of
+health.

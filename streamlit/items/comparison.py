@@ -40,3 +40,9 @@ def comparison():
                 DenseNet still outperformed it. With more hyperparameter
                 tuning, it could also likely perform even better and within
                 a short period of time.""")
+
+    st.markdown("""All of the models likely suffered from the small database
+                that was available for usage. In order to make monumental leaps
+                in accuracy, much larger datasets are needed. The societal
+                benefits could leap to both earlier and more accurate
+                diagnosis and has the potential to save many lives.""")
