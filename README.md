@@ -10,6 +10,7 @@ used in model training:
 ## Project Organization
 ------------------------------------------------------------------------
     root
+    ├── .devcontainer # for the streamlit app
     ├── data # contains indices for training, validation, and testing
     │   ├── test_indices.pkl
     │   ├── train_indices.pkl
@@ -51,13 +52,11 @@ used in model training:
     │   └── train_resnet50.py 
     ├── streamlit # contains the files for the streamlit app
     │   ├── images # contains images used in the streamlit app
-    │   ├── items # contains src files for the streamlit app 
-    │   ├── metrics # contains metrics used in the streamlit app
-    │   ├── app.py
-    │   └── requirements.txt
+    │   └── items # contains src files for the streamlit app 
     ├── .gitignore
     ├── LICENSE
     ├── main.py
+    ├── Pipfile # for streamlit
     ├── README.md
     └── requirements.txt
 
