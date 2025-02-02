@@ -3,7 +3,7 @@ from PIL import Image
 
 def description():
     
-    with Image.open('images/cover_image_sample.png') as img:
+    with Image.open('streamlit/images/cover_image_sample.png') as img:
         st.image(img)
 
     st.markdown("""<p class = 'scaling-headers'><u>Machine

@@ -5,7 +5,7 @@ import pickle
 
 def resnet50():
 
-    with Image.open("images/resnet50.jpg") as img:
+    with Image.open("streamlit/images/resnet50.jpg") as img:
         st.image(img, caption = "CC BY-SA 4.0 license 2.3.4. MobileNet.",
                 use_container_width = True)
 

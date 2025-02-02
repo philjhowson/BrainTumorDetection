@@ -86,7 +86,7 @@ div.main > div {
 )
 
 
-st.sidebar.image("images/logo.png", use_container_width = False)
+st.sidebar.image("streamlit/images/logo.png", use_container_width = False)
 
 menu = st.sidebar.radio("Menu", ["Project Description",
                                  "Data Exploration & Preparation",
@@ -118,13 +118,13 @@ elif menu == "Model Comparison":
 
 col1, col2 = st.sidebar.columns([0.15, 0.85], gap = "small",
                                 vertical_alignment = "center")
-col1.image("images/github.png")
+col1.image("streamlit/images/github.png")
 col2.markdown("""<a href = "https://philjhowson.github.io">philjhowson.github.io</a>""",
               unsafe_allow_html = True)
 
 col1, col2 = st.sidebar.columns([0.15, 0.85], gap = "small",
                                 vertical_alignment = "center")
-col1.image("images/linkedin.png")
+col1.image("streamlit/images/linkedin.png")
 col2.markdown("""<a href = "https://www.linkedin.com/in/philjhowson/">philjhowson</a>""",
               unsafe_allow_html = True)
 

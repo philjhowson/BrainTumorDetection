@@ -5,7 +5,7 @@ import pickle
 
 def densenet162():
 
-    with Image.open("images/densenet.png") as img:
+    with Image.open("streamlit/images/densenet.png") as img:
         st.image(img, caption = "Image credit to Huang et al., 2018.")
 
     st.markdown("""<p class = 'scaling-headers'><u>DenseNet169</u></p>""",
@@ -17,7 +17,7 @@ def densenet162():
     with open('metrics/densenet_tumor_performance_v2.pkl', 'rb') as f:
         history = pickle.load(f)
     
-    st.markdown("""I used DenseNet169 
+    st.markdown("""I used DenseNet162 
                 (<a href = "https://arxiv.org/abs/1608.06993">Huang et al., 2016</a>) in PyTorch 
                 (<a href = "https://arxiv.org/abs/1912.01703">Paszke et al.,
                 2019</a>). I froze all the pre-trained layers except the final four layers of
