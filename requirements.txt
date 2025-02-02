@@ -48,3 +48,4 @@ packaging==24.2
 executing==2.0.1
 numpy==1.24.3
 pickleshare==0.7.5
+streamlit==1.40.2
