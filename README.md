@@ -67,7 +67,7 @@ The training, validation, and test split were then created and saved for model t
 and evaluation.
 
 Three models were build and tested using the [pytorch](https://pytorch.org/) library. I
-utilized a ResNet50 model with additional layers and skip connections, DenseNet 162, and
+utilized a ResNet50 model with additional layers and skip connections, DenseNet162, and
 a custom built model.
 
 The ResNet50 model had three additional convolutional layers with skip connections that 
@@ -176,6 +176,10 @@ as with the main.py script.
 ```sh
 python src/compare_models.py --models resnet custom --versions 2 1
 ```
+
+Be aware that without a gpu, training models will take a significant amount of time and
+therefore, it is suggested to ensure you have a cuda compatible version of python with
+and adequate gpu before training any models.
 
 ## Future Directions
 
