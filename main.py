@@ -16,7 +16,7 @@ from compare_models import compare_models
 
 def run_script(script, model = None, version = None, models = None, versions = None):
 
-    if script == 'exploration':
+    if script == 'explore':
         data_exploration()
     if script == 'preparation':
         preparation()
@@ -35,7 +35,7 @@ def run_script(script, model = None, version = None, models = None, versions = N
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "Run the data exploration, data splitting, model training and evaluation, and compare models.")
 
-    parser.add_argument("--script", type = str, required = True, help = "REQUIRED. Options: exploration, preparation, train, compare")
+    parser.add_argument("--script", type = str, required = True, help = "REQUIRED. Options: explore, preparation, train, compare")
     parser.add_argument("--model", type = str, help = "REQUIRED FOR MODEL TRAINING: name of model for training and evaluation, either resnet, densenet, or custom.")
     parser.add_argument("--version", type = int, help = "version number, defaults to 1, expects and int.")
     parser.add_argument("--models", nargs = "+", type = str, help = "models to be compared: defaults to ['resnet', 'densenet', 'custom'], expects at least one input e.g., --models resnet densenet")    
