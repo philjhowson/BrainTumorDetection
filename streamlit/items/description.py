@@ -6,9 +6,9 @@ def description():
     with Image.open('streamlit/images/cover_image_sample.png') as img:
         st.image(img)
 
-    st.markdown("""<p class = 'scaling-headers'><u>Machine
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>Machine
                 Learning Models for Brain Tumor Detection
-                </u></p>""",
+                </u></h2>""",
                 unsafe_allow_html = True)
 
     st.markdown("""
@@ -19,7 +19,7 @@ def description():
         to detect brain tumors in MRI images.
         """)
 
-    st.markdown("""<p class = 'scaling-headers'><u>The Dataset</u></p>""",
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>The Dataset</u></h2>""",
                 unsafe_allow_html = True)
     
     st.markdown("""Dataset retrieved from kaggle:<br>
@@ -27,7 +27,7 @@ def description():
         Brain MRI Images for Brain Tumor Detection</a><br>
         This dataset contains MRI images of brains with and without tumors.""", unsafe_allow_html = True)
 
-    st.markdown("""<p class = 'scaling-headers'><u>The Models</u></p>""",
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>The Models</u></h2>""",
                 unsafe_allow_html = True)
 
     st.markdown("""

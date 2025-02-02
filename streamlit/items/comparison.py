@@ -3,7 +3,7 @@ from PIL import Image
 
 def comparison():
 
-    st.markdown("""<p class = 'scaling-headers'><u>Model Comparison</u></p>""",
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>Model Comparison</u></h2>""",
                 unsafe_allow_html = True)
 
     st.markdown("""To compare the overall performance on the test data

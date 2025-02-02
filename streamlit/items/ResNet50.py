@@ -9,7 +9,7 @@ def resnet50():
         st.image(img, caption = "CC BY-SA 4.0 license 2.3.4. MobileNet.",
                 use_container_width = True)
 
-    st.markdown("""<p class = 'scaling-headers'><u>ResNet50</u></p>""",
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>ResNet50</u></h2>""",
                 unsafe_allow_html = True)
 
     with open('metrics/resnet50_scores_v2.pkl', 'rb') as f:

@@ -2,8 +2,8 @@ import streamlit as st
 from PIL import Image
 
 def exploration():
-    st.markdown("""<p class = 'scaling-headers'><u>
-                Data Exploration</u></p>""", unsafe_allow_html = True)
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>
+                Data Exploration</u></h2>""", unsafe_allow_html = True)
 
     st.markdown("""The dataset contains 253 images, of which, 155 (61%)
                 of the images contained a positive tumor diagnosis. Image
@@ -31,8 +31,8 @@ def exploration():
                 the classes 'No Tumor' (top two rows) and 'Tumor' (bottom
                 two rows).""")
 
-    st.markdown("""<p class = 'scaling-headers'><u>
-                Data Preparation</u></p>""", unsafe_allow_html = True)
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>
+                Data Preparation</u></h2>""", unsafe_allow_html = True)
 
     st.markdown("""As can be seen in the image, reshaping to a single set of
                 dimensions across all images would result in significant distortion.

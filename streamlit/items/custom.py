@@ -5,7 +5,7 @@ import pickle
 
 def custom_model():
 
-    st.markdown("""<p class = 'scaling-headers'><u>Custom Model</u></p>""",
+    st.markdown("""<h2 style="font-size: 1.5em;"><u>Custom Model</u></h2>""",
                 unsafe_allow_html = True)
 
     with open('metrics/custom_model_scores_v2.pkl', 'rb') as f:
