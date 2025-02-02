@@ -5,14 +5,14 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms, models
 from torch.utils.data import DataLoader, Subset
 from torchcam.methods import GradCAM
-from custom_functions import custom_resize, CustomModel
+from custom_functions import custom_resize, CustomResNet50
 from sklearn.metrics import roc_auc_score, classification_report, f1_score
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
 
-def evaluate_custom(version = 1):
+def evaluate_resnet(version):
 
     with open('data/test_indices.pkl', 'rb') as f:
         test_indices = pickle.load(f)
@@ -25,14 +25,22 @@ def evaluate_custom(version = 1):
     test_dataset = Subset(datasets.ImageFolder(root = 'scans', transform = test_transform), test_indices)
     test_loader = DataLoader(test_dataset, batch_size = 32, shuffle = False)
 
+    res = models.resnet50(weights = 'ResNet50_Weights.DEFAULT')
+    res.conv1 = nn.Conv2d(1, 64, kernel_size = 7, stride = 2, padding = 3, bias = False)
+    base_res = nn.Sequential(*list(res.children())[:-2])
+
+    for param in base_res.parameters():
+        param.requires_grad = False
+        
+    custresnet50 = CustomResNet50(base_res)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = CustomModel().to(device)
+    model = custresnet50.to(device)
 
-    checkpoint = torch.load(f'models/custom_model_tumor_checkpoint_v{version}.pth', weights_only = True)
+    checkpoint = torch.load(f'models/resnet50_tumor_checkpoint_v{version}.pth', weights_only = True)
     model.load_state_dict(checkpoint)
 
-    with open(f'metrics/custom_model_tumor_performance_v{version}.pkl', 'rb') as f:
+    with open(f'metrics/resnet50_tumor_performance_v{version}.pkl', 'rb') as f:
         history = pickle.load(f)
 
     fig, ax = plt.subplots(2, 2, figsize = (15, 10))
@@ -65,9 +73,9 @@ def evaluate_custom(version = 1):
         axes.set_ylabel(f"{titles[index]}")
         axes.legend()
 
-    plt.savefig(f'images/custom_model_history_v{version}.png', bbox_inches = 'tight')
+    plt.savefig(f'images/resnet50_history_v{version}.png', bbox_inches = 'tight')
 
-    print('Custom model training history saved.')
+    print('ResNet50 training and validation plots saved.')
 
     model.eval()
 
@@ -95,18 +103,18 @@ def evaluate_custom(version = 1):
 
     report_dict = classification_report(test_labels, test_preds, target_names = ['No Tumor', 'Tumor'], output_dict = True)
 
-    with open(f"metrics/custom_model_classification_report_v{version}.pkl", "wb") as f:
+    with open(f"metrics/resnet50_classification_report_v{version}.pkl", "wb") as f:
         pickle.dump(report_dict, f)
 
     scores = {'ROC-AUC' : test_roc_score,
               'F1 Score' : test_f1_score}
 
-    with open(f"metrics/custom_model_scores_v{version}.pkl", "wb") as f:
+    with open(f"metrics/resnet50_scores_v{version}.pkl", "wb") as f:
         pickle.dump(scores, f)
 
-    print('Custom model test scores saved.')
+    print('ResNet50 test scores and classification report saved.')
 
-    grad_cam = GradCAM(model, model.block7[-3])
+    grad_cam = GradCAM(model, model.Conv3[-4])
 
     dataset = datasets.ImageFolder(root = 'scans')
     no_set = dataset.samples[:98]
@@ -202,13 +210,14 @@ def evaluate_custom(version = 1):
 
     plt.tight_layout();
 
-    plt.savefig(f'images/custom_model_grad_cam_v{version}.png', bbox_inches = 'tight')
+    plt.savefig(f'images/resnet50_grad_cam_v{version}.png', bbox_inches = 'tight')
 
-    print('Custom model grad_cam images saved.')
+    print('ResNet50 grad_cam images saved.')
     print('Script complete!')
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = "Evaluate the custom model.")
+    
+    parser = argparse.ArgumentParser(description = "Evaluate the ResNet50 model.")
     parser.add_argument("--version", type = int, help = "version number, defaults to 1, expects and int.")
     args = parser.parse_args()
-    evaluate_custom(args.version) 
+    evaluate_resnet(args.version)

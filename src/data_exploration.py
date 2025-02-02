@@ -10,98 +10,110 @@ here I load in the dataset without transformations so I can further explore the 
 what transformations make the most sense
 """
 
-dataset = datasets.ImageFolder(root = 'scans')
+def data_exploration():
 
-print(dataset)
-print(dataset.classes)
+    dataset = datasets.ImageFolder(root = 'scans')
 
-width = []
-height = []
-category = []
-mode = []
+    print(dataset)
+    print(dataset.classes)
 
-for item in dataset.samples:
-    with Image.open(item[0]) as img:
-        width.append(img.width)
-        height.append(img.height)
-        category.append(item[1])
-        mode.append(img.mode)
+    width = []
+    height = []
+    category = []
+    mode = []
 
-data = pd.DataFrame({'Category' : category, 'Width' : width, 'Height' : height, 'Mode' : mode})
+    for item in dataset.samples:
+        with Image.open(item[0]) as img:
+            width.append(img.width)
+            height.append(img.height)
+            category.append(item[1])
+            mode.append(img.mode)
 
-data['Aspect_Ratio'] = data['Width'] / data['Height']
-data['Shapes'] = [1 if data['Width'].iloc[item] == data['Height'].iloc[item] else 0 for item in range(len(data))]
+    data = pd.DataFrame({'Category' : category, 'Width' : width, 'Height' : height, 'Mode' : mode})
 
-data.describe()
+    data['Aspect_Ratio'] = data['Width'] / data['Height']
+    data['Shapes'] = [1 if data['Width'].iloc[item] == data['Height'].iloc[item] else 0 for item in range(len(data))]
 
-fig, ax = plt.subplots(2, 3, figsize = (20, 10))
+    data.describe()
 
-sns.countplot(data = data, x = 'Category', ax = ax[0, 0])
-ax[0, 0].set_xticks(ticks = [0, 1], labels = ['No', 'Yes'])
-ax[0, 0].set_title('Countplot for No/Yes Categories')
+    fig, ax = plt.subplots(2, 3, figsize = (20, 10))
 
-sns.histplot(data = data, x = 'Width', kde = True, ax = ax[0, 1])
-ax[0, 1].set_title('Histogram of Image Widths');
+    sns.countplot(data = data, x = 'Category', ax = ax[0, 0])
+    ax[0, 0].set_xticks(ticks = [0, 1], labels = ['No', 'Yes'])
+    ax[0, 0].set_title('Countplot for No/Yes Categories')
 
-sns.histplot(data = data, x = 'Height', kde = True, ax = ax[0, 2])
-ax[0, 2].set_title('Histogram of Image Heights');
+    sns.histplot(data = data, x = 'Width', kde = True, ax = ax[0, 1])
+    ax[0, 1].set_title('Histogram of Image Widths');
 
-sns.histplot(data = data, x = 'Aspect_Ratio', kde = True, ax = ax[1, 0])
-ax[1, 0].set_title('Histogram of Aspect Ratios');
+    sns.histplot(data = data, x = 'Height', kde = True, ax = ax[0, 2])
+    ax[0, 2].set_title('Histogram of Image Heights');
 
-sns.countplot(data = data, x = 'Shapes', ax = ax[1, 1])
-ax[1, 1].set_xticks(ticks = [0, 1], labels = ['No', 'Yes'])
-ax[1, 1].set_title('Countplot for Shape (Yes = Square)')
+    sns.histplot(data = data, x = 'Aspect_Ratio', kde = True, ax = ax[1, 0])
+    ax[1, 0].set_title('Histogram of Aspect Ratios');
 
-sns.countplot(data = data, x = 'Mode', ax = ax[1, 2])
-ax[1, 2].set_title('Image Mode');
+    sns.countplot(data = data, x = 'Shapes', ax = ax[1, 1])
+    ax[1, 1].set_xticks(ticks = [0, 1], labels = ['No', 'Yes'])
+    ax[1, 1].set_title('Countplot for Shape (Yes = Square)')
 
-plt.tight_layout();
+    sns.countplot(data = data, x = 'Mode', ax = ax[1, 2])
+    ax[1, 2].set_title('Image Mode');
 
-plt.savefig('images/data_exploration.png', bbox_inches = 'tight')
+    plt.tight_layout();
 
-no_set = dataset.samples[:98]
-yes_set = dataset.samples[98:]
+    plt.savefig('images/data_exploration.png', bbox_inches = 'tight')
 
-items = [48, 55,  2, 72, 53, 12, 64, 83, 82, 21,  3,  5, 79, 32, 59, 81, 33, 58,  7, 20]
+    print('Image characteristics plots saved.')
 
-fig, ax = plt.subplots(4, 5, figsize = (20, 15))
+    no_set = dataset.samples[:98]
+    yes_set = dataset.samples[98:]
 
-for index, axes in enumerate(ax.flat):
+    items = [48, 55,  2, 72, 53, 12, 64, 83, 82, 21,  3,  5, 79, 32, 59, 81, 33, 58,  7, 20]
 
-    if index < 10:
+    fig, ax = plt.subplots(4, 5, figsize = (20, 15))
 
-        with Image.open(no_set[items[index]][0]) as img:
-            axes.imshow(img, cmap = 'gray')
-            axes.set_xticks([])
-            axes.set_yticks([])
-            axes.set_title('No Tumor')
+    for index, axes in enumerate(ax.flat):
 
-    else:
-        with Image.open(yes_set[items[index]][0]) as img:
-            axes.imshow(img, cmap='gray')
-            axes.set_xticks([])
-            axes.set_yticks([])
-            axes.set_title('Tumor')
+        if index < 10:
 
-plt.tight_layout();
-plt.savefig('random_brain_image_sample.png', bbox_inches = 'tight')
+            with Image.open(no_set[items[index]][0]) as img:
+                axes.imshow(img, cmap = 'gray')
+                axes.set_xticks([])
+                axes.set_yticks([])
+                axes.set_title('No Tumor')
 
-img1 = Image.open(no_set[items[2]][0])
-img1 = img1.convert('L')
-img2 = custom_resize(img1)
+        else:
+            with Image.open(yes_set[items[index]][0]) as img:
+                axes.imshow(img, cmap='gray')
+                axes.set_xticks([])
+                axes.set_yticks([])
+                axes.set_title('Tumor')
 
-img3 = img1.resize((400, 400), Image.LANCZOS)
+    plt.tight_layout();
+    plt.savefig('images/random_brain_image_sample.png', bbox_inches = 'tight')
 
-titles = ['Original Image:', 'Reshaped Image:', 'Untrimmed Reshaped Image:']
-images = [img1, img2, img3]
+    print('Random sample of brain images saved.')
 
-fig, ax = plt.subplots(1, 3, figsize = (15, 5))
+    img1 = Image.open(no_set[items[2]][0])
+    img1 = img1.convert('L')
+    img2 = custom_resize(img1)
 
-for index, axes in enumerate(ax):
-    axes.imshow(images[index], cmap = 'gray')
-    axes.set_title(f"{titles[index]} {images[index].width} x {images[index].height}")
-    axes.set_xticks([])
-    axes.set_yticks([])
+    img3 = img1.resize((400, 400), Image.LANCZOS)
 
-plt.savefig('images/resizing.png', bbox_inches = 'tight')
+    titles = ['Original Image:', 'Reshaped Image:', 'Untrimmed Reshaped Image:']
+    images = [img1, img2, img3]
+
+    fig, ax = plt.subplots(1, 3, figsize = (15, 5))
+
+    for index, axes in enumerate(ax):
+        axes.imshow(images[index], cmap = 'gray')
+        axes.set_title(f"{titles[index]} {images[index].width} x {images[index].height}")
+        axes.set_xticks([])
+        axes.set_yticks([])
+
+    plt.savefig('images/resizing.png', bbox_inches = 'tight')
+
+    print('Resizing sample image saved.')
+    print('Script complete!')
+
+if __name__ == "__main__":
+    data_exploration()
