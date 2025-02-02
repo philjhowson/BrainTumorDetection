@@ -15,7 +15,7 @@ def description():
         The objective of this project is to utilize cutting edge machine 
         learning technology to train models to detect brain tumors based 
         on MRI images. In this project, I make use of three different models,
-        ResNet50, DenseNet169, and a custom made model to assess their ability
+        ResNet50, DenseNet162, and a custom made model to assess their ability
         to detect brain tumors in MRI images.
         """)
 
@@ -38,7 +38,7 @@ def description():
 
     st.markdown("""
         <b>DenseNet162</b> (<a href = "https://arxiv.org/abs/1608.06993">Huang et al., 2018</a>)<br>
-        DenseNet169 differs from other models in that feature maps from all previous layers of the
+        DenseNet162 differs from other models in that feature maps from all previous layers of the
         model are shared with each layer. This interconnectedness facilitates deeper neural networks
         with less computational load than other models.
         """, unsafe_allow_html = True)

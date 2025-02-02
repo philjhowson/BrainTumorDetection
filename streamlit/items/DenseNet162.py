@@ -6,7 +6,7 @@ import pickle
 def densenet162():
 
     with Image.open("images/densenet.png") as img:
-        st.image(img, caption = "Image credit to Huang et al., 2018")
+        st.image(img, caption = "Image credit to Huang et al., 2018.")
 
     st.markdown("""<p class = 'scaling-headers'><u>DenseNet169</u></p>""",
                 unsafe_allow_html = True)
