@@ -8,7 +8,7 @@ def densenet162():
     with Image.open("streamlit/images/densenet.png") as img:
         st.image(img, caption = "Image credit to Huang et al., 2018.")
 
-    st.markdown("""<p class = 'scaling-headers'><u>DenseNet169</u></p>""",
+    st.markdown("""<p class = 'scaling-headers'><u>DenseNet162</u></p>""",
                 unsafe_allow_html = True)
 
     with open('metrics/densenet_scores_v2.pkl', 'rb') as f:
