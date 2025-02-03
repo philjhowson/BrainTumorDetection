@@ -7,6 +7,10 @@ used in model training:
 
 [Brain MRI Images for Brain Tumor Detection](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection/data)
 
+The link to the Streamlit app can be found here:
+
+[Machine Learning Models for Brain Tumor Detection](https://cnnbraintumordetection.streamlit.app/)
+
 ## Project Organization
 ------------------------------------------------------------------------
     root
