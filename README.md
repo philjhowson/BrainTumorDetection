@@ -94,7 +94,7 @@ sent through a block with a large kernel (kernel_size = 7) and a block with a me
 (kernel_size = 5) size before being concatenated and fed through the remaining blocks.
 The initial residual learning, was added to the second block and then residual
 learning was continually accumulated in an intermediate object such that each block
-had access to a feature map that contained the output of ever previous block. For
+had access to a feature map that contained the output of every previous block. For
 more details about the custom model architecture and the architecture of the additions
 made to the ResNet50 model, please see the custom_functions.py file in the src folder.
 
