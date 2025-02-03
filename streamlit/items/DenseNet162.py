@@ -59,6 +59,7 @@ def densenet162():
     densenet_report['support'] = densenet_report['support'].astype(int)
     densenet_report.rename(columns = {'precision' : 'Precision', 'recall' : 'Recall',
                                     'f1-score' : 'F1-Score', 'support' : 'Support'}, inplace = True)
+    densenet_report.index = ['No Tumor', 'Tumor', 'Accuracy', 'Macro Average', 'Weighted Average']
     densenet_report = densenet_report.style.format(precision = 3, na_rep = "")
 
     st.table(densenet_report)
