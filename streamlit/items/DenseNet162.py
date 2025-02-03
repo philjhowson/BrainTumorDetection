@@ -38,7 +38,7 @@ def densenet162():
                  """, use_container_width = True)
         
     st.markdown(f"""The training and validation metrics indicated a relatively stable
-                increase in metrics over the training epochs, although there was
+                increase in metrics over the training epochs, although there were
                 still choppy increases and decreases in the performance metrics.
                 Additionally, the best score was approached fairly early, with only
                 small increases in scores and decreases in loss over the remaining
