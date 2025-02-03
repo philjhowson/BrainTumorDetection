@@ -59,10 +59,10 @@ def custom_model():
 
     st.table(custom_report)   
 
-    st.markdown("""To further explore the how the model classifies scans as
+    st.markdown("""To further explore how the model classifies scans as
                 either 'No Tumor' or 'Tumor', I used GradCAM from the torchcam
                 (<a href = "https://github.com/frgfm/torch-cam">Fernandez,
-                2020</a>) library. In most cases where the label was 'Tumor'
+                2020</a>) library. In most cases, where the label was 'Tumor'
                 and the model predicted 'Tumor', activations were strongest
                 on or around the tumor, suggesting the model has identified
                 what a tumor looks like in an MRI image. In most classifications

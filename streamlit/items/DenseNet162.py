@@ -21,7 +21,7 @@ def densenet162():
                 (<a href = "https://arxiv.org/abs/1608.06993">Huang et al., 2016</a>) in PyTorch 
                 (<a href = "https://arxiv.org/abs/1912.01703">Paszke et al.,
                 2019</a>). I froze all the pre-trained layers except the final four layers of
-                the final (fourth) dense block. The final classifier hear was also 
+                the final (fourth) dense block. The final classifier was also 
                 replaced with simplified linear layer with 1 output to facilitate classification 
                 between the two categories of the dataset. This resulted in a total of 972,160 
                 trainable parameters, out of a total 12,486,145 parameters. I used an Adam 
@@ -42,7 +42,7 @@ def densenet162():
                 still choppy increases and decreases in the performance metrics.
                 Additionally, the best score was approached fairly early, with only
                 small increases in scores and decreases in loss over the remaining
-                epochs. The model was training was stopped early and the model
+                epochs. The model training was stopped early and the model
                 was loaded from the best ROC-AUC score 
                 ({round(max(history['val_roc_auc']), 2)}). The model scored
                 lower on the test set than on the validation set, with a
@@ -63,7 +63,7 @@ def densenet162():
 
     st.table(densenet_report)
 
-    st.markdown("""To further explore the how the model classifies scans as
+    st.markdown("""To further explore how the model classifies scans as
                 either 'No Tumor' or 'Tumor', I used GradCAM from the torchcam
                 (<a href = "https://github.com/frgfm/torch-cam">Fernandez,
                 2020</a>) library. In most cases where the label was 'Tumor'

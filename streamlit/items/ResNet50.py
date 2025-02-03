@@ -25,7 +25,7 @@ def resnet50():
                 2019</a>) and removed the fully connected layers. I
                 added four convolutional layers with residual connections,
                 followed by two fully connected layers, with batch
-                normalization and dropout, before the finally classifier
+                normalization and dropout, before the final classifier
                 layer. The purpose of the additional layers was to
                 train them for task specific feature recognition. The
                 additional convolutional layers were initialized with
@@ -75,7 +75,7 @@ def resnet50():
 
     st.table(resnet_report)
 
-    st.markdown("""To further explore the how the model classifies scans as
+    st.markdown("""To further explore how the model classifies scans as
                 either 'No Tumor' or 'Tumor', I used GradCAM from the torchcam
                 (<a href = "https://github.com/frgfm/torch-cam">Fernandez,
                 2020</a>) library. In most cases where the label was 'Tumor'
