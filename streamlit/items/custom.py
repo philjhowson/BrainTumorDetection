@@ -55,6 +55,7 @@ def custom_model():
     custom_report['support'] = custom_report['support'].astype(int)
     custom_report.rename(columns = {'precision' : 'Precision', 'recall' : 'Recall',
                                     'f1-score' : 'F1-Score', 'support' : 'Support'}, inplace = True)
+    custom_report.index = ['No Tumor', 'Tumor', 'Accuracy', 'Macro Average', 'Weighted Average']
     custom_report = custom_report.style.format(precision = 3, na_rep = "")
 
     st.table(custom_report)   

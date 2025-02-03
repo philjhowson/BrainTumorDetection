@@ -71,6 +71,7 @@ def resnet50():
     resnet_report['support'] = resnet_report['support'].astype(int)
     resnet_report.rename(columns = {'precision' : 'Precision', 'recall' : 'Recall',
                                     'f1-score' : 'F1-Score', 'support' : 'Support'}, inplace = True)
+    resnet_report.index = ['No Tumor', 'Tumor', 'Accuracy', 'Macro Average', 'Weighted Average']
     resnet_report = resnet_report.style.format(precision = 3, na_rep = "")
 
     st.table(resnet_report)
