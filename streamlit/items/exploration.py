@@ -63,7 +63,6 @@ def exploration():
                 20% was split in half, 50% for a validation set and 50% for
                 a test set. Class weights were computed with the
                 compute_class_weight() function in sklearn
-                (<a href = "https://www.jmlr.org/papers/volume12/pedregosa11a/pedregosa11a.pdf?ref=https:/">
-                Pedregosa et al., 2011</a>) for use with a binary cross
-                entropy with logits loss function to deal with class
+                (<a href = "https://www.jmlr.org/papers/volume12/pedregosa11a/pedregosa11a.pdf?ref=https:/">Pedregosa
+                et al., 2011</a>) for use with a binary cross entropy with logits loss function to deal with class
                 imbalances.""", unsafe_allow_html = True)
