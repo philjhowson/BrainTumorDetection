@@ -16,8 +16,7 @@ def description():
         assessed against three models:
         1. ResNet50
         2. DenseNet162
-        3. a custom made model
-        """)
+        3. a custom made model""")
 
     st.markdown("""<h2 style="font-size: 1.5em;"><u>The Dataset</u></h2>""",
                 unsafe_allow_html = True)
