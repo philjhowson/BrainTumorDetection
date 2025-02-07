@@ -13,9 +13,9 @@ def description():
 
     st.markdown("""
         TIn this project, the ability to detect brain tumors in MRI images is
-        assessed against three models:<br><br>
-        1. ResNet50<br>
-        2. DenseNet162<br>
+        assessed against three models:
+        1. ResNet50
+        2. DenseNet162
         3. a custom made model
         """)
 
