@@ -19,11 +19,11 @@ def exploration():
                 of square ('Yes') versus non-square ('No') image shapes, and
                 (bottom right) image mode count.""")
 
-    st.markdown("""The image dataset indicates that some preprocessing of
-                the images will be necessary, not only to have a similar size
-                across all images, but also to reshape the images to reduce
-                the non-informative space. The figure below presents 10
-                randomly selected images from the 'No' category and the 'Yes'
+    st.markdown("""Inspection of the image dataset indicates that some
+                preprocessing of the images is necessary, not only to have a
+                similar size across all images, but also to reshape the images
+                to reduce the non-informative space. The figure below presents
+                10 randomly selected images from the 'No' category and the 'Yes'
                 category.""")
 
     with Image.open("images/random_brain_image_sample.png") as img:
@@ -50,7 +50,7 @@ def exploration():
         would look like if it was reshaped to 400 x 400 using Image.resize()
         or another similar function.""")
 
-    st.markdown("""DataLoader() was used to process batches for the training
+    st.markdown("""DataLoader() was used to batch process for the training
                 and validation stages. Batch sizes were set to 32 for ResNet50
                 and DenseNet162, but to 16 for the custom model due to GPU limitations.
                 I used the transforms.Compose() to create randomized changes

@@ -24,9 +24,6 @@ def comparison():
                 compared to the other two with lower ROC-AUC and F1-scores.
                 Further optimization of the model architecture and training
                 parameters would likely facilitate a more competative model.
-                The custom model also had significantly lower parameter
-                count than ResNet50 (but similar parameter count as
-                Densenet162), which may contribute to lower performance.
                 Additionally, the other models had the benefit of transfer
                 learning from a robust dataset of images.
                 """)
@@ -41,8 +38,7 @@ def comparison():
                 tuning, it could also likely perform even better and within
                 a short period of time.""")
 
-    st.markdown("""All of the models likely suffered from the small database
-                that was available for usage. In order to make monumental leaps
-                in accuracy, much larger datasets are needed. The societal
-                benefits could leap to both earlier and more accurate
-                diagnosis and has the potential to save many lives.""")
+    st.markdown("""All models suffered from the relatively small dataset
+                available for analysis. To improve accuracy, a much larger
+                dataset is needed. The societal benefits include both earlier
+                and more accurate diagnosis and the potential to save lives.""")

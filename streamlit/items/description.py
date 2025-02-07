@@ -12,17 +12,17 @@ def description():
                 unsafe_allow_html = True)
 
     st.markdown("""
-        The objective of this project is to utilize cutting edge machine 
-        learning technology to train models to detect brain tumors based 
-        on MRI images. In this project, I make use of three different models,
-        ResNet50, DenseNet162, and a custom made model to assess their ability
-        to detect brain tumors in MRI images.
+        TIn this project, the ability to detect brain tumors in MRI images is
+        assessed against three models:<br><br>
+        1. ResNet50<br>
+        2. DenseNet162<br>
+        3. a custom made model
         """)
 
     st.markdown("""<h2 style="font-size: 1.5em;"><u>The Dataset</u></h2>""",
                 unsafe_allow_html = True)
     
-    st.markdown("""Dataset retrieved from kaggle:<br>
+    st.markdown("""The dataset retrieved from kaggle is:<br>
         <a href = "https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection/data">
         Brain MRI Images for Brain Tumor Detection</a><br>
         This dataset contains MRI images of brains with and without tumors.""", unsafe_allow_html = True)
@@ -33,7 +33,7 @@ def description():
     st.markdown("""
         <b>ResNet50</b> (<a href = "https://arxiv.org/abs/1512.03385">He et al., 2015</a>)<br>
         Resnet50 utilizes residual learning through "skip connections" to facilitate deeper neural
-        networks without loss of accuracy which occurred in earlier models.
+        networks without loss of accuracy.  Loss of accuracy was a characteristic of earlier models.
         """, unsafe_allow_html = True)
 
     st.markdown("""
@@ -45,8 +45,8 @@ def description():
 
     st.markdown("""
         <b>Custom Model</b></br>
-        I built a custom model that utilizes different kernel sizes to leverage their ability to
-        capture local and global relationships before concatenating the feature maps for pass through
+        My custom model that utilizes different kernel sizes to leverage their ability to capture
+        local and global relationships before concatenating the feature maps for pass through
         deeper convolutional layers. Each block in the network shares the output feature map of the
         previous blocks to facilitate a deeper neural network much like ResNet50 and DenseNet162.
         """, unsafe_allow_html = True)

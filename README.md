@@ -66,18 +66,19 @@ The link to the Streamlit app can be found here:
 
 ## Project Introduction
 I began by exploring the dataset to determine the distribution of classes and the different
-image properties. Then I visualized the distribution and characteristics of the dataset.
-The training, validation, and test split were then created and saved for model training 
-and evaluation.
+image properties. and visualized them. The training, validation, and test split were then
+created and saved for model training and evaluation.
 
-Three models were build and tested using the [pytorch](https://pytorch.org/) library. I
-utilized a ResNet50 model with additional layers and skip connections, DenseNet162, and
-a custom built model.
+Three models were build and tested using the [pytorch](https://pytorch.org/) library:
+
+1. ResNet50
+2. DenseNet162
+3. a custom built model.
 
 The ResNet50 model had three additional convolutional layers with skip connections that 
 I trained on model specific tasks, while the majority of the ResNet50 model weights were
 frozen to facilitate transfer learning. A small snippet of code below presents the 
-general structure of the additional layers. There are a total of 91,838,657 parameters, 
+general structure of the additional layers. There were a total of 91,838,657 parameters, 
 of which 61,517,569 were trainable.
 
 ```python
@@ -94,9 +95,9 @@ The DenseNet162 model was unchanged, although I froze the majority of the layers
 in 972,160 trainable parameters, out of a total 12,486,145.
 
 The custom built model had a multi-branch architecture. Specifically, the input image was
-sent through a block with a large kernel (kernel_size = 7) and a block with a medium kernel
+sent through a block with a large kernel (kernel_size = 7) size and a block with a medium kernel
 (kernel_size = 5) size before being concatenated and fed through the remaining blocks.
-The initial residual learning, was added to the second block and then residual
+The initial residual learning was added to the second block and then residual
 learning was continually accumulated in an intermediate object such that each block
 had access to a feature map that contained the output of every previous block. For
 more details about the custom model architecture and the architecture of the additions
@@ -136,30 +137,39 @@ Navigate to the cloned repository and create a folders for the models and scans:
 mkdir models scans
 ```
 Download the scans from [kaggle](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection/data)
- and unpack the yes and no folders from the zip into the scans folder.
+and unpack the yes and no folders from the zip into the scans folder.
 
- The scripts assume the root directory of the repository is the directory you are running
- the code from.
+It is ideal to start a virtual environment and install the requirements in the requirements.txt
+in order to ensure that all the dependencies match when the conditions I built the models under.
 
- Everything can be run from the main.py file, which has one mandatory argument, when
- being run --script, which should be one of explore, preparation, train, or compare.
- However, for all options besides explore and prepare, at least one model needs
- to be specified, using the --model argument. This argument takes either resnet, densenet,
- or custom as arguments. You can also optionally include a version argument --version,
- which expects and int, such as 1, or 2. This can be useful if you want to run the
- model training more than once but to save all the outputs individual. The default
- version is 1.
+```sh
+python -m venv my_env
+my_env/Scripts/activate
+pip install -r requirements.txt
+```
 
- ```sh
- python main.py --script explore
- ```
+The scripts assume the root directory of the repository is the directory you are running
+the code from.
+
+Everything can be run from the main.py file, which has one mandatory argument when
+being run, --script. The --script argument should be one of explore, preparation, train, or compare.
+However, for all options besides explore and prepare, at least one model needs
+to be specified, using the --model argument. This argument takes either resnet, densenet,
+or custom as arguments. You can also optionally include a version argument --version,
+which expects and int, such as 1, or 2. This can be useful if you want to run the
+model training more than once but to save all the outputs individually. The default
+version is 1.
+
+```sh
+python main.py --script explore
+```
 ```sh
 python main.py --script train --model densenet --version 2
 ```
 
-The model comparison script also has two arguments, --models and --versions, which take
-a minimum of one argument, but can take more. The default arguments for --models
-resnet, densenet, custom and the default for --versions is 1, 1, 1,.
+The model comparison script also has two arguments, --models and --versions. The comparison 
+script takes a minimum of one argument, but can take more. The default arguments for --models are
+resnet, densenet, custom and the default for --versions are 1, 1, 1,.
 
 ```sh
 python main.py --script compare --models resnet densenet custom --versions 3 1 2
@@ -183,7 +193,10 @@ python src/compare_models.py --models resnet custom --versions 2 1
 
 Be aware that without a gpu, training models will take a significant amount of time and
 therefore, it is suggested to ensure you have a cuda compatible version of python with
-and adequate gpu before training any models.
+and adequate gpu before training any models. It should also be noted that due to the
+limited size of the training set, there is instability in model reproduction. More specifically,
+training, validation, and test scores can vary. This was the main reason I put the
+versioning option into the scripts.
 
 ## Future Directions
 
