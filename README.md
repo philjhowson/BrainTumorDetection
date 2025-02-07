@@ -73,7 +73,7 @@ Three models were build and tested using the [pytorch](https://pytorch.org/) lib
 
 1. ResNet50
 2. DenseNet162
-3. a custom built model.
+3. a custom built model
 
 The ResNet50 model had three additional convolutional layers with skip connections that 
 I trained on model specific tasks, while the majority of the ResNet50 model weights were
