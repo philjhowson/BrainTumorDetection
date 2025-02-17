@@ -140,7 +140,7 @@ Download the scans from [kaggle](https://www.kaggle.com/datasets/navoneel/brain-
 and unpack the yes and no folders from the zip into the scans folder.
 
 It is ideal to start a virtual environment and install the requirements in the requirements.txt
-in order to ensure that all the dependencies match when the conditions I built the models under.
+in order to ensure that all the dependencies match with the conditions I built the models under.
 
 ```sh
 python -m venv my_env
