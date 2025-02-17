@@ -156,7 +156,7 @@ being run, --script. The --script argument should be one of explore, preparation
 However, for all options besides explore and prepare, at least one model needs
 to be specified, using the --model argument. This argument takes either resnet, densenet,
 or custom as arguments. You can also optionally include a version argument --version,
-which expects and int, such as 1, or 2. This can be useful if you want to run the
+which expects an int, such as 1, or 2. This can be useful if you want to run the
 model training more than once but to save all the outputs individually. The default
 version is 1.
 
