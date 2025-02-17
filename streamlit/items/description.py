@@ -12,7 +12,7 @@ def description():
                 unsafe_allow_html = True)
 
     st.markdown("""
-        TIn this project, the ability to detect brain tumors in MRI images is
+        In this project, the ability to detect brain tumors in MRI images is
         assessed against three models:
         1. ResNet50
         2. DenseNet162
