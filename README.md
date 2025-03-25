@@ -131,7 +131,7 @@ Clone the repository:
 git clone https://github.com/philjhowson/BrainTumorDetection
 ```
 
-Navigate to the cloned repository and create a folders for the models and scans:
+Navigate to the cloned repository and create folders for the models and scans:
 
 ```sh
 mkdir models scans
