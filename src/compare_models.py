@@ -34,7 +34,7 @@ def compare_models(models = ['resnet', 'densenet', 'custom'], versions = [1, 1, 
     if 'resnet50' in models:
         model_names.append('ResNet50')
     if 'densenet' in models:
-        model_names.append('DenseNet162')
+        model_names.append('DenseNet169')
     if 'custom_model' in models:
         model_names.append('Custom Model')
 
