@@ -69,7 +69,7 @@ def train_densenet(version = 1):
     epochs = 50
     history = {'loss': [],  'f1-weighted' : [], 'roc_auc': [], 'grad_norm': [], 'val_loss': [], 'val_roc_auc': [],  'val_f1-weighted' : []}
 
-    print(f'DenseNet162 loaded and ready to begin training version {version}!')
+    print(f'DenseNet169 loaded and ready to begin training version {version}!')
 
     for epoch in range(epochs):
         
@@ -195,12 +195,12 @@ def train_densenet(version = 1):
     with open(f'metrics/densenet_tumor_performance_v{version}.pkl', 'wb') as f:
         pickle.dump(history, f)
 
-    print('DenseNet162 model and training metrics saved.')
+    print('DenseNet169 model and training metrics saved.')
     print('Script complete!')
 
 if __name__ == "__main__":
     
-    parser = argparse.ArgumentParser(description = "Train DenseNet162 model.")
+    parser = argparse.ArgumentParser(description = "Train DenseNet169 model.")
     parser.add_argument("--version", type = int, help = "version number, defaults to 1, expects and int.")
     args = parser.parse_args()
     train_densenet(args.version)  
