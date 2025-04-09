@@ -210,7 +210,7 @@ def evaluate_densenet(version = 1):
 
 if __name__ == "__main__":
     
-    parser = argparse.ArgumentParser(description = "Evaluate DenseNet162 model.")
+    parser = argparse.ArgumentParser(description = "Evaluate DenseNet169 model.")
     parser.add_argument("--version", type = int, help = "version number, defaults to 1, expects and int.")
     args = parser.parse_args()
     evaluate_densenet(args.version)
